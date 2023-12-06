@@ -230,3 +230,58 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+/*
+  Keyboard component styling
+*/
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+  gap: 4px;
+}
+
+.keyboard-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  /*cursor: pointer;*/
+  transition: background-color 0.3s ease;
+}
+
+/*
+.keyboard-letter:hover {
+  background-color: #e0e0e0;
+}
+*/
+
+.keyboard-letter.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+.keyboard-letter.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+.keyboard-letter.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
