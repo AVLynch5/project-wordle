@@ -2,10 +2,8 @@ import React from 'react';
 
 import { range } from '../../utils';
 import { WORD_LENGTH } from '../../constants';
-import { checkGuess } from '../../game-helpers';
 
-function Guess({ guess, answer }) {
-  const checkedGuess = checkGuess(guess, answer);
+function Guess({ guess }) {
 
   return (
     <>
@@ -14,9 +12,9 @@ function Guess({ guess, answer }) {
           return (
             <span
               key={num}
-              className={checkedGuess ? `cell ${checkedGuess[num].status}` : 'cell'}
+              className={guess ? `cell ${guess[num].status}` : 'cell'}
             >
-              {checkedGuess ? checkedGuess[num].letter : undefined}
+              {guess ? guess[num].letter : undefined}
             </span>
           );
         })}
