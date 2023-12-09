@@ -4,9 +4,7 @@ import { arrayToObject } from '../../game-helpers';
 
 function Keyboard({ guessArray }) {
   const keyboardRows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
-  const letterStatusObj = guessArray
-    ? arrayToObject(guessArray)
-    : undefined;
+  const letterStatusObj = arrayToObject(guessArray);
 
   return (
     <div className="keyboard-container">
