@@ -53,3 +53,16 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
+
+export function arrayToObject(guessArray) {
+  const letterObject = {};
+  for (const guess of guessArray) {
+    for (const letterStatus of guess) {
+      const { letter, status } = letterStatus;
+      if (!(letter in letterObject) || status === 'correct') {
+        letterObject[letter] = status;
+      }
+    }
+  }
+  return letterObject;
+}
