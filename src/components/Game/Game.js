@@ -44,7 +44,7 @@ function Game() {
     <>
       <GuessResults guessArray={guessArray}/>
       <ImportForm handleAddGuess={handleAddGuess} status={status}/>
-      <Keyboard />
+      <Keyboard guessArray={guessArray}/>
       {status === "win" && <WinBanner guessArrayLength={guessArray.length} handleRestart={handleRestart}/>}
       {status === "lose" && <LoseBanner answer={answer} handleRestart={handleRestart}/>}
     </>
