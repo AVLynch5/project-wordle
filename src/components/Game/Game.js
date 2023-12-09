@@ -2,11 +2,13 @@ import React from 'react';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
-import ImportForm from '../InputForm/InputForm';
-import GuessResults from '../GuessResults/GuessResults';
-import WinBanner from '../WinBanner/WinBanner';
-import LoseBanner from '../LoseBanner/LoseBanner';
+import ImportForm from '../InputForm';
+import GuessResults from '../GuessResults';
+import WinBanner from '../WinBanner';
+import LoseBanner from '../LoseBanner';
+import Keyboard from '../Keyboard';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { checkGuess } from '../../game-helpers';
 
 function Game() {
   const [guessArray, setGuessArray] = React.useState([]);
@@ -17,9 +19,11 @@ function Game() {
   });
 
   const handleAddGuess = (guess) => {
+    //check guess before adding to guessArray
+    const checkedGuess=checkGuess(guess, answer);
     const newGuessArray = [
       ...guessArray,
-      guess
+      checkedGuess
     ];
     setGuessArray(newGuessArray);
     if (guess === answer) {
@@ -38,9 +42,10 @@ function Game() {
 
   return (
     <>
-      <GuessResults guessArray={guessArray} answer={answer}/>
+      <GuessResults guessArray={guessArray}/>
       <ImportForm handleAddGuess={handleAddGuess} status={status}/>
-      {status === "win" && <WinBanner guessArray={guessArray} handleRestart={handleRestart}/>}
+      <Keyboard guessArray={guessArray}/>
+      {status === "win" && <WinBanner guessArrayLength={guessArray.length} handleRestart={handleRestart}/>}
       {status === "lose" && <LoseBanner answer={answer} handleRestart={handleRestart}/>}
     </>
   );
