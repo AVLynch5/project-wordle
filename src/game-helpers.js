@@ -53,12 +53,18 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
-
+//convert guessArray from array of guess arrays to 
+// an object with letter keys and status values
 export function arrayToObject(guessArray) {
+  // if guessArray empty, return null
+  if (guessArray.length <= 0) {
+    return null;
+  }
   const letterObject = {};
   for (const guess of guessArray) {
     for (const letterStatus of guess) {
       const { letter, status } = letterStatus;
+      //only add letter & status if it doesn't exist or status = "correct"
       if (!(letter in letterObject) || status === 'correct') {
         letterObject[letter] = status;
       }
