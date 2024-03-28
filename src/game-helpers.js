@@ -72,3 +72,13 @@ export function arrayToObject(guessArray) {
   }
   return letterObject;
 }
+
+//swr fetcher function
+export async function fetcher(url) {
+  const response = await fetch(url);
+  const json = await response.json();
+  if (!response.ok) {
+    throw json;
+  }
+  return json;
+}
