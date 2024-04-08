@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WORD_LENGTH } from '../../constants';
 
-function InputForm({ handleAddGuess, status }) {
+function InputForm({ handleAddGuess, status, guessError }) {
   const [guess, setGuess] = React.useState('');
   return (
     <>
@@ -18,6 +18,7 @@ function InputForm({ handleAddGuess, status }) {
         <input
           required
           id="guess-input"
+          className={guessError ? 'error' : null}
           type="text"
           value={guess}
           onChange={event => {
@@ -28,6 +29,11 @@ function InputForm({ handleAddGuess, status }) {
           title={`${WORD_LENGTH} letter word`}
           disabled={status !== "in progress"}
         />
+        <span
+          className={guessError ? 'error-span visible' : 'error-span'}
+        >
+          Please enter a real word
+        </span>
       </form>
     </>
   );
