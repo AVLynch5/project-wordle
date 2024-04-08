@@ -161,6 +161,10 @@ h1 {
   outline-offset: 4px;
 }
 
+.guess-input-wrapper input.error {
+  border: 2px solid var(--color-error);
+}
+
 .banner {
   position: fixed;
   left: 0;
@@ -284,4 +288,14 @@ h1 {
   background: var(--color-warning);
   border-color: var(--color-warning);
   color: white;
+}
+
+.error-span {
+  font-size: 12px;
+  padding: 3px;
+  color: var(--color-error);
+  display: none;
+}
+.error-span.visible {
+  display: block;
 }
