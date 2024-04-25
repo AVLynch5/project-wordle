@@ -6,21 +6,21 @@ import GuessResults from "../GuessResults";
 import WinBanner from "../WinBanner";
 import LoseBanner from "../LoseBanner";
 import Keyboard from "../Keyboard";
-import { NUM_OF_GUESSES_ALLOWED, ENDPOINT } from "../../constants";
+import { NUM_OF_GUESSES_ALLOWED, WORD_ENDPOINT, VALID_ENDPOINT } from "../../constants";
 import { checkGuess, fetcher } from "../../game-helpers";
-import { words } from "../../words_dictionary";
 
 function Game() {
   const [guessArray, setGuessArray] = React.useState([]);
   const [status, setStatus] = React.useState("in progress");
   const [guessError, setGuessError] = React.useState(false);
   // SWR to fetch word and control loading and error states
-  const { data, isLoading, error, mutate } = useSWRImmutable(ENDPOINT, fetcher);
+  const { data, isLoading, error, mutate } = useSWRImmutable(WORD_ENDPOINT, fetcher);
   const answer = data ? data[0].toUpperCase() : null;
 
-  const handleAddGuess = (guess) => {
-    const validWord = words[guess.toLowerCase()] === 1;
-    setGuessError(!validWord);
+  const handleAddGuess = async (guess) => {
+    const wordDefinition = await fetch(`${VALID_ENDPOINT}/${guess}`);
+    const wordJson = await wordDefinition.json();
+    const validWord = Array.isArray(wordJson);
     if (validWord) {
       setGuessError(false);
       //check guess before adding to guessArray
@@ -32,11 +32,13 @@ function Game() {
       } else if (newGuessArray.length >= NUM_OF_GUESSES_ALLOWED) {
         setStatus("lose");
       }
+    } else {
+      setGuessError(true);
     }
   };
 
   const handleRestart = () => {
-    mutate(ENDPOINT);
+    mutate(WORD_ENDPOINT);
     setGuessArray([]);
     setStatus("in progress");
   };
