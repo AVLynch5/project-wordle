@@ -1,0 +1,20 @@
+# Ignore cache directories
+.parcel-cache
+
+# Ignore build artifacts
+dist
+
+# Ignore documentation
+docs
+
+# Ignore development dependencies
+node_modules
+
+# Ignore ESLint configuration
+.eslintrc.json
+
+# Ignore Git-related files
+.gitignore
+
+# Ignore license file
+LICENSE.md
