@@ -10,8 +10,14 @@ COPY package*.json ./
 # install dependencies
 RUN npm install
 
+# install gulp-cli
+RUN npm install gulp-cli
+
 # copy app source
 COPY . .
+
+# compile css
+RUN npm run gulp-init
 
 # build app
 RUN npm run build
