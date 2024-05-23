@@ -4,6 +4,9 @@
 # Ignore build artifacts
 dist
 
+# Ignore gulp-generated css
+src/css/*.css
+
 # Ignore documentation
 docs
 
