@@ -14,7 +14,7 @@ function Game() {
   const [status, setStatus] = React.useState("in progress");
   const [guessError, setGuessError] = React.useState(false);
   // SWR to fetch word and control loading and error states
-  const { data, isLoading, error, mutate } = useSWRImmutable(WORD_ENDPOINT, fetcher);
+  const { data, isLoading, isValidating, error, mutate } = useSWRImmutable(WORD_ENDPOINT, fetcher);
   const answer = data ? data[0].toUpperCase() : null;
 
   const handleAddGuess = async (guess) => {
@@ -43,7 +43,7 @@ function Game() {
     setStatus("in progress");
   };
 
-  if (isLoading) {
+  if (isLoading || isValidating) {
     return <p>Loading ...</p>;
   }
   if (error) {
