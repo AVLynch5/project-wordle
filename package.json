@@ -20,7 +20,7 @@
     "uswds": "^2.14.0"
   },
   "scripts": {
-    "predev": "rimraf .parcel-cache dist",
+    "predev": "rimraf .parcel-cache dist && npm install -g gulp-cli",
     "dev": "npm run gulp-init && parcel public/index.html",
     "build": "parcel build public/index.html",
     "new-component": "new-component",
