@@ -4,6 +4,12 @@ import { WORD_LENGTH } from '../../constants';
 
 function InputForm({ handleAddGuess, status, guessError, totalGuesses }) {
   const [guess, setGuess] = React.useState('');
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, [totalGuesses]);
+
   return (
     <React.Fragment
       key={totalGuesses}
@@ -23,6 +29,7 @@ function InputForm({ handleAddGuess, status, guessError, totalGuesses }) {
           className={guessError ? 'error' : null}
           type="text"
           value={guess}
+          ref={inputRef}
           onChange={event => {
             const upperCaseEntry = event.target.value.toUpperCase();
             setGuess(upperCaseEntry);
