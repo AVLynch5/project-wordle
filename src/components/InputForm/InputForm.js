@@ -2,10 +2,18 @@ import React from 'react';
 
 import { WORD_LENGTH } from '../../constants';
 
-function InputForm({ handleAddGuess, status, guessError }) {
+function InputForm({ handleAddGuess, status, guessError, totalGuesses }) {
   const [guess, setGuess] = React.useState('');
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, [totalGuesses]);
+
   return (
-    <>
+    <React.Fragment
+      key={totalGuesses}
+    >
       <form
         className="guess-input-wrapper"
         onSubmit={event => {
@@ -21,6 +29,7 @@ function InputForm({ handleAddGuess, status, guessError }) {
           className={guessError ? 'error' : null}
           type="text"
           value={guess}
+          ref={inputRef}
           onChange={event => {
             const upperCaseEntry = event.target.value.toUpperCase();
             setGuess(upperCaseEntry);
@@ -35,7 +44,7 @@ function InputForm({ handleAddGuess, status, guessError }) {
           Please enter a real word
         </span>
       </form>
-    </>
+    </React.Fragment>
   );
 }
 

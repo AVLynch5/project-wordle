@@ -13,14 +13,16 @@ function Game() {
   const [guessArray, setGuessArray] = React.useState([]);
   const [status, setStatus] = React.useState("in progress");
   const [guessError, setGuessError] = React.useState(false);
+  const [totalGuesses, setTotalGuesses] = React.useState(0);
   // SWR to fetch word and control loading and error states
-  const { data, isLoading, error, mutate } = useSWRImmutable(WORD_ENDPOINT, fetcher);
+  const { data, isLoading, isValidating, error, mutate } = useSWRImmutable(WORD_ENDPOINT, fetcher);
   const answer = data ? data[0].toUpperCase() : null;
 
   const handleAddGuess = async (guess) => {
     const wordDefinition = await fetch(`${VALID_ENDPOINT}/${guess}`);
     const wordJson = await wordDefinition.json();
     const validWord = Array.isArray(wordJson);
+    setTotalGuesses(currentValue => currentValue + 1);
     if (validWord) {
       setGuessError(false);
       //check guess before adding to guessArray
@@ -43,7 +45,7 @@ function Game() {
     setStatus("in progress");
   };
 
-  if (isLoading) {
+  if (isLoading || isValidating) {
     return <p>Loading ...</p>;
   }
   if (error) {
@@ -52,7 +54,7 @@ function Game() {
   return (
     <>
       <GuessResults guessArray={guessArray} />
-      <InputForm handleAddGuess={handleAddGuess} status={status} guessError={guessError}/>
+      <InputForm handleAddGuess={handleAddGuess} status={status} guessError={guessError} totalGuesses={totalGuesses}/>
       <Keyboard guessArray={guessArray} />
       {status === "win" && (
         <WinBanner

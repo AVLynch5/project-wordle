@@ -6,6 +6,8 @@
   "dependencies": {
     "eslint": "8.49.0",
     "eslint-config-react-app": "7.0.1",
+    "gulp": "^5.0.0",
+    "gulp-sass": "^5.1.0",
     "new-component": "5.0.2",
     "parcel": "2.9.2",
     "prettier": "2.6.2",
@@ -13,13 +15,17 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "5.0.1",
-    "swr": "^2.2.5"
+    "sass": "^1.77.2",
+    "swr": "^2.2.5",
+    "uswds": "^2.14.0"
   },
   "scripts": {
-    "predev": "rimraf .parcel-cache dist",
-    "dev": "parcel public/index.html",
+    "predev": "rimraf .parcel-cache dist && npm install -g gulp-cli",
+    "dev": "npm run gulp-init && parcel public/index.html",
     "build": "parcel build public/index.html",
-    "new-component": "new-component"
+    "new-component": "new-component",
+    "gulp-init": "gulp init",
+    "gulp-watch": "gulp watch"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
