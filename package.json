@@ -20,12 +20,10 @@
     "uswds": "^2.14.0"
   },
   "scripts": {
-    "predev": "rimraf .parcel-cache dist && npm install -g gulp-cli",
-    "dev": "npm run gulp-init && parcel public/index.html",
+    "predev": "rimraf .parcel-cache dist",
+    "dev": "npx gulp init && parcel public/index.html",
     "build": "parcel build public/index.html",
-    "new-component": "new-component",
-    "gulp-init": "gulp init",
-    "gulp-watch": "gulp watch"
+    "new-component": "new-component"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
