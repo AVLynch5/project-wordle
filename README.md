@@ -1,5 +1,14 @@
 # Word Game
 
+## Running the Project Locally
+
+This project has been containerized with Docker. Once Docker has been installed, the project can be ran by navigating to the root directory and running two commands:
+
+1. docker build -t word-game .
+2. docker run -dp 127.0.0.1:3000:80 word-game
+
+Once these two commands have been run, the project will be accessible at localhost:3000
+
 ## Joy of React, Project I
 
 In this project, we'll recreate a popular online word game, Wordle:
