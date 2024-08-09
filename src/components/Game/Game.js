@@ -46,7 +46,7 @@ function Game() {
   };
 
   if (isLoading || isValidating) {
-    return <p>Loading ...</p>;
+    return <div className="loading-squares"></div>;
   }
   if (error) {
     return <p>Error ...</p>;
