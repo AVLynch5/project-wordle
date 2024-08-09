@@ -16,8 +16,7 @@
     "react-dom": "18.2.0",
     "rimraf": "5.0.1",
     "sass": "^1.77.2",
-    "swr": "^2.2.5",
-    "uswds": "^2.14.0"
+    "swr": "^2.2.5"
   },
   "scripts": {
     "predev": "rimraf .parcel-cache dist",
