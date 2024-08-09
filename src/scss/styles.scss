@@ -2,315 +2,353 @@
   Theme and global variables
 */
 html {
-    overflow-y: scroll;
-  
-    --game-spacing: 32px;
-    --header-height: 4rem;
-  
-    --color-success: hsl(150deg 70% 30%);
-    --color-warning: hsl(50deg 100% 30%);
-    --color-error: hsl(0deg 70% 45%);
-    --color-gray-100: hsl(0deg 0% 10%);
-    --color-gray-300: hsl(0deg 0% 25%);
-    --color-gray-500: hsl(0deg 0% 50%);
-    --color-gray-700: hsl(0deg 0% 75%);
-    --color-gray-900: hsl(0deg 0% 90%);
-  }
-  
-  /*
+  overflow-y: scroll;
+
+  --game-spacing: 32px;
+  --header-height: 4rem;
+
+  --color-success: hsl(150deg 70% 30%);
+  --color-warning: hsl(50deg 100% 30%);
+  --color-error: hsl(0deg 70% 45%);
+  --color-gray-100: hsl(0deg 0% 10%);
+  --color-gray-300: hsl(0deg 0% 25%);
+  --color-gray-500: hsl(0deg 0% 50%);
+  --color-gray-700: hsl(0deg 0% 75%);
+  --color-gray-900: hsl(0deg 0% 90%);
+}
+
+/*
     Custom styles
   */
+body {
+  font-family: sans-serif;
+}
+
+@media (max-height: 600px) {
   body {
-    font-family: sans-serif;
+    --game-spacing: 8px;
   }
-  
-  @media (max-height: 600px) {
-    body {
-      --game-spacing: 8px;
-    }
-  }
-  
-  button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-    color: inherit;
-  }
-  
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
-  
-  header {
-    display: flex;
-    height: var(--header-height);
-    border-bottom: 1px solid var(--color-gray-700);
-    color: var(--color-gray-300);
-  }
-  
-  header .side {
-    width: var(--header-height);
-    display: grid;
-    place-content: center;
-  }
-  
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header {
+  display: flex;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--color-gray-700);
+  color: var(--color-gray-300);
+}
+
+header .side {
+  width: var(--header-height);
+  display: grid;
+  place-content: center;
+}
+
+h1 {
+  flex: 1;
+  font-size: 2rem;
+  line-height: var(--header-height);
+  text-align: center;
+}
+
+@media (max-width: 25rem) {
   h1 {
-    flex: 1;
-    font-size: 2rem;
-    line-height: var(--header-height);
-    text-align: center;
+    font-size: 1.25rem;
   }
-  
-  @media (max-width: 25rem) {
-    h1 {
-      font-size: 1.25rem;
-    }
-  }
-  
-  .game-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--game-spacing);
-    padding: var(--game-spacing) 32px;
-    margin: 0 auto;
-    min-width: 250px;
-    max-width: min(500px, 58vh, 100%);
-  }
-  
-  .guess-results {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .guess {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 4px;
-  }
-  
-  .cell {
-    position: relative;
-    width: 20%;
-    display: grid;
-    place-content: center;
-    aspect-ratio: 1 / 1;
-    border: 2px solid var(--color-gray-700);
-    border-radius: var(--radius);
-    font-size: 2rem;
-  }
-  
-  /*
+}
+
+.game-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--game-spacing);
+  padding: var(--game-spacing) 32px;
+  margin: 0 auto;
+  min-width: 250px;
+  max-width: min(500px, 58vh, 100%);
+}
+
+.guess-results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.guess {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.cell {
+  position: relative;
+  width: 20%;
+  display: grid;
+  place-content: center;
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--color-gray-700);
+  border-radius: var(--radius);
+  font-size: 2rem;
+}
+
+/*
     Round the corners for the 4 cells at the very corners of
     the game board
   */
-  .guess:first-of-type .cell:first-of-type {
-    --radius: 4px 0px 0px 0px;
-  }
-  .guess:first-of-type .cell:last-of-type {
-    --radius: 0px 4px 0px 0px;
-  }
-  .guess:last-of-type .cell:last-of-type {
-    --radius: 0px 0px 4px 0px;
-  }
-  .guess:last-of-type .cell:first-of-type {
-    --radius: 0px 0px 0px 4px;
-  }
-  
-  .cell.correct {
-    background: var(--color-success);
-    border-color: var(--color-success);
-    color: white;
-  }
-  .cell.incorrect {
-    background: var(--color-gray-300);
-    border-color: var(--color-gray-300);
-    color: white;
-  }
-  .cell.misplaced {
-    background: var(--color-warning);
-    border-color: var(--color-warning);
-    color: white;
-  }
-  
-  .guess-input-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    height: 6.75rem;
-  }
-  
-  .guess-input-wrapper label {
-    font-size: 1.25rem;
-  }
-  
-  .guess-input-wrapper input {
-    display: block;
-    width: 100%;
-    font-size: 2rem;
-    border: 2px solid var(--color-gray-300);
-    border-radius: 4px;
-    padding: 8px 16px;
-    outline-offset: 4px;
-  }
-  
-  .guess-input-wrapper input.error {
-    border: 2px solid var(--color-error);
-    animation: shake 0.85s;
-  }
-  
-  .banner {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 32px;
-    text-align: center;
-    animation: slideUp 750ms cubic-bezier(0, 0.72, 0.24, 1.02);
-    border-radius: 4px 4px 0px 0px;
-    will-change: transform;
-  }
-  
-  .happy.banner {
-    background: var(--color-success);
-    color: white;
-  }
-  .sad.banner {
-    background: var(--color-error);
-    color: white;
-  }
-  
-  .visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-  }
-  
-  /*
+.guess:first-of-type .cell:first-of-type {
+  --radius: 4px 0px 0px 0px;
+}
+.guess:first-of-type .cell:last-of-type {
+  --radius: 0px 4px 0px 0px;
+}
+.guess:last-of-type .cell:last-of-type {
+  --radius: 0px 0px 4px 0px;
+}
+.guess:last-of-type .cell:first-of-type {
+  --radius: 0px 0px 0px 4px;
+}
+
+.cell.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+.cell.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+.cell.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+.guess-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 6.75rem;
+}
+
+.guess-input-wrapper label {
+  font-size: 1.25rem;
+}
+
+.guess-input-wrapper input {
+  display: block;
+  width: 100%;
+  font-size: 2rem;
+  border: 2px solid var(--color-gray-300);
+  border-radius: 4px;
+  padding: 8px 16px;
+  outline-offset: 4px;
+}
+
+.guess-input-wrapper input.error {
+  border: 2px solid var(--color-error);
+  animation: shake 0.85s;
+}
+
+.banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px;
+  text-align: center;
+  animation: slideUp 750ms cubic-bezier(0, 0.72, 0.24, 1.02);
+  border-radius: 4px 4px 0px 0px;
+  will-change: transform;
+}
+
+.happy.banner {
+  background: var(--color-success);
+  color: white;
+}
+.sad.banner {
+  background: var(--color-error);
+  color: white;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+/*
     Modal styles
   
     HACK: I'm doing this in a quick and dirty way.
     Later in the course, we'll see my preferred way of building
     modals in React.
   */
-  [data-reach-dialog-content] {
-    position: relative;
-    border-radius: 8px;
-    padding: 24px 32px;
-  }
-  .modal-close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 16px;
-    cursor: pointer;
-  }
-  .modal-title {
-    margin-bottom: 0.5em;
-  }
-  
-  /*
+[data-reach-dialog-content] {
+  position: relative;
+  border-radius: 8px;
+  padding: 24px 32px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 16px;
+  cursor: pointer;
+}
+.modal-title {
+  margin-bottom: 0.5em;
+}
+
+/*
     Keyframe animations
   */
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0%);
-    }
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
   }
-  @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-    20%, 80% {
-      transform: translate3d(2px, 0, 0);
-    }
-    30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-    }
-    40%, 60% {
-      transform: translate3d(4px, 0, 0);
-    }
+  to {
+    transform: translateY(0%);
   }
-  
-  /*
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+@keyframes bounce {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
+}
+
+/*
     Keyboard component styling
   */
-  .keyboard-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #f4f4f4;
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .keyboard-row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 8px;
-    gap: 4px;
-  }
-  
-  .keyboard-letter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    /*cursor: pointer;*/
-    transition: background-color 0.3s ease;
-  }
-  
-  /*
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+  gap: 4px;
+}
+
+.keyboard-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  /*cursor: pointer;*/
+  transition: background-color 0.3s ease;
+}
+
+/*
   .keyboard-letter:hover {
     background-color: #e0e0e0;
   }
   */
-  
-  .keyboard-letter.correct {
-    background: var(--color-success);
-    border-color: var(--color-success);
-    color: white;
-  }
-  .keyboard-letter.incorrect {
-    background: var(--color-gray-300);
-    border-color: var(--color-gray-300);
-    color: white;
-  }
-  .keyboard-letter.misplaced {
-    background: var(--color-warning);
-    border-color: var(--color-warning);
-    color: white;
-  }
-  
-  .error-span {
-    font-size: 12px;
-    padding: 3px;
-    color: var(--color-error);
-    display: none;
-  }
-  .error-span.visible {
-    display: block;
-  }
+
+.keyboard-letter.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+.keyboard-letter.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+.keyboard-letter.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+.error-span {
+  font-size: 12px;
+  padding: 3px;
+  color: var(--color-error);
+  display: none;
+}
+.error-span.visible {
+  display: block;
+}
+
+.loading-squares {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  width: 180px;
+  aspect-ratio: 4;
+  border-radius: 4px;
+  --_gray: no-repeat
+    linear-gradient(90deg, #0000 16px, var(--color-gray-300) 0 50px, #0000 0);
+  --_yellow: no-repeat
+    linear-gradient(90deg, #0000 16px, var(--color-warning) 0 50px, #0000 0);
+  --_green: no-repeat
+    linear-gradient(90deg, #0000 16px, var(--color-success) 0 50px, #0000 0);
+  background: var(--_gray) 0% 50%, var(--_yellow) 50% 50%,
+    var(--_green) 100% 50%;
+  background-size: calc(100% / 3) 75%;
+  animation: bounce 0.5s infinite linear;
+}
